@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class EntrepreneurController {
@@ -69,9 +66,17 @@ public class EntrepreneurController {
 	public List<ResponseRecommendations> Recommendations(@RequestParam(value = "id",required = false)String id) {
 			System.out.print(id);
 
-		return repository.mutualHaves(id);
-//		List<ResponseRecommendations> rp1 =  repository.mutualFriends("anuj");
-//		List<ResponseRecommendations> rp2 =	 repository.mutualGroups("anuj");
+//		return repository.mutualHaves(id);
+		List<ResponseRecommendations> rp2 =  repository.mutualFriends("anuj");
+		List<ResponseRecommendations> rp3 =	 repository.mutualGroups("anuj");
+		List<ResponseRecommendations> rp1 =	 repository.mutualHaves("anuj");
+		rp1.addAll(rp2);
+		rp1.addAll(rp3);
+
+		Set <ResponseRecommendations> r =  new HashSet<ResponseRecommendations>(rp1);
+		List <ResponseRecommendations> result = new ArrayList<ResponseRecommendations>(r);
+		return  result;
+
 ////		rp1.addAll(rp2);
 //		Iterator<ResponseRecommendations> iterator1 = rp1.iterator();
 //		Iterator<ResponseRecommendations> iterator2 = rp2.iterator();
