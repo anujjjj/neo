@@ -16,6 +16,7 @@ public class PostController {
 	@PostMapping("/addpost")
 	public String addPost(@RequestBody Post Post) {
 		repository.save(Post);
+		repository.addPostedReln(Post.getUid(),Post.getId());
 		return "Post Added";
 	}
 
@@ -34,5 +35,4 @@ public class PostController {
 		repository.deleteById(id);
 		return "Post deleted with id : " + id;
 	}
-
 }

@@ -67,4 +67,8 @@ public class Entrepreneur {
 
 	@Relationship(type="Follows", direction = Relationship.OUTGOING)
 	private List<Entrepreneur> follows;
+
+	@Relationship(type="Posted", direction = Relationship.OUTGOING)
+	private List<Post> posts;
+
 }
